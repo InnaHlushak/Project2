@@ -1,0 +1,100 @@
+<template>
+    <div class="container">
+        <h3>Search by time period</h3>
+        <v-container max-width="50vw" class="text-center">
+            <v-row>
+                <v-col>
+                    <v-sheet color="grey-darken-4">
+                        <label for="inputStartDate">Start date:</label>
+                        <input
+                            v-model="period.startDate"
+                            type="date"
+                            id="inputStartDate"
+                            class="input-date"
+                            min="2014-01-01"
+                            max="2024-12-31"
+                        />
+                        <label for="inputEndDate">End date:</label>
+                        <input
+                            v-model="period.endDate"
+                            type="date"
+                            id="inputEndDate"
+                            class="input-date"
+                            min="2014-01-01"
+                            max="2024-12-31"
+                        />
+                    </v-sheet>
+                    <v-sheet v-if="!verifyPeriod" class="error">
+                        {{ error }}
+                    </v-sheet>
+                    <v-btn
+                        v-show="verifyPeriod"
+                        color="indigo"
+                        variant="tonal"
+                        @click="showItemsByPeriod()"
+                    >
+                        Show items 
+                    </v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
+        <ItemsByPeriod v-if="show" :user-period="period" />
+    </div>
+</template>
+
+<script>
+    import ItemsByPeriod from '@/components/get-items/ItemsByPeriod.vue';
+
+    export default {
+        name: 'InputPeriodContainer',
+        components: {
+            ItemsByPeriod,
+        },
+        data() {
+            return  {
+                period: {
+                    startDate: null,
+                    endDate: null,
+                },                
+                error: 'Enter the date!',
+                show: false,
+            }
+        },
+        computed: {
+            verifyPeriod() {
+                return this.period.startDate && this.period.endDate;
+            }
+        },
+        methods: {
+            showItemsByPeriod() {
+                    this.show = true;
+            },
+        },
+        watch: {
+            period: {
+                handler(value) {
+                    this.show = false;
+                    this.period = value;
+                },
+            deep: true
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .error {
+        background-color: black;
+        color: red;
+    }
+
+    .input-date {
+        background-color: rgba(23, 23, 23, 0.203);
+        border: 1px solid white;
+        border-radius: 2px;
+        color:white;    
+        margin: 10px;
+        padding: 5px 10px;  
+        font-size: 15px;     
+    }
+</style>

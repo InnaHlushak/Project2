@@ -2,27 +2,39 @@
     <div class="container">
         <h3>Search by date</h3>
         <v-container max-width="50vw"  class="text-center"> 
-            <v-row >
+            <v-row>
                 <v-col>
-                    <v-sheet  color="grey-darken-4">
+                    <v-sheet color="grey-darken-4">
                         <label for="inputDate">Date:</label>
-                        <input type="date" id="inputDate" class="input-date" min="2014-01-01" max="2024-12-31" v-model="date"/>
-                    </v-sheet >
-                    <v-sheet class="error" v-if="!verifyDate()"> 
+                        <input 
+                            v-model="date"
+                            type="date" 
+                            id="inputDate" 
+                            class="input-date" 
+                            min="2014-01-01" 
+                            max="2024-12-31" 
+                        />
+                    </v-sheet>
+                    <v-sheet v-if="!verifyDate" class="error"> 
                         {{ error }}
                     </v-sheet>
-                    <v-btn  color="indigo" variant="tonal" v-show="verifyDate()" @click="showItemsByDate()"> 
-                        Show item 
+                    <v-btn 
+                        v-show="verifyDate"
+                        color="indigo" 
+                        variant="tonal" 
+                        @click="showItemsByDate()"
+                    > 
+                        Show item
                     </v-btn>
                 </v-col>
             </v-row>
         </v-container>
-            <ItemsByDate :user-date="userDate"  v-if="show"/>
+            <ItemsByDate v-if="show" :user-date="date" />
     </div>
 </template>
 
 <script>
-    import ItemsByDate from '@/components/getitems/ItemsByDate.vue';
+    import ItemsByDate from '@/components/get-items/ItemsByDate.vue';
 
     export default {
         name: 'InputDateContainer',
@@ -32,36 +44,25 @@
         data() {
             return  {
                 date: null,
-                error: '',
+                error: 'Enter the date!',
                 show: false,
             }
         },
         computed: {
-            userDate() {
-                this.show = false;
-
-                if (this.verifyDate()){
-                    return this.date;
-                }
-
-                return null;
-            }
+            verifyDate() {
+                return this.date;
+            },
         },
         methods: {
-            verifyDate() {
-                let date = this.date;
-
-                if(!date) {
-                    this.error = 'Enter the date!';
-                    this.show = false;            
-                return false;           
-                }
-                return true;
-            },
             showItemsByDate() {
-                this.userDate;
                 this.show = true;
             },
+        },
+        watch: {
+            date(value) {
+                this.show = false;
+                this.date = value;
+            }
         }
     }
 </script>
@@ -82,5 +83,3 @@
         font-size: 15px;     
     }
 </style>
-
-

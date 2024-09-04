@@ -24,13 +24,14 @@ export const useItemsByPeriodStore = defineStore('itemsByPeriod', {
     //події використовуються  для зміни стану 
     actions: {
         //зокрема для  виконання асинхронних запитів:  отримання даних  з стороннього API
-        async  getItems() {
+        async getItems() {
             try {
                 const ApiStore = useApiStore();
                 this.urlApi = ApiStore.urlApiByPeriod;
                 const response = await axiosInstance.get(this.urlApi);
                 this.itemsState = response.data;
             } catch(error) {
+                this.itemsState.splice(0,this.itemsState.length);
                 alert("Sorry! Error! " + error.message + " Specify another time period or try again");
             }
         },
@@ -42,8 +43,9 @@ export const useItemsByPeriodStore = defineStore('itemsByPeriod', {
         paginatedList(page) {
             this.pagination.page = page;
             const sublist = this.items;
-            const startIndex = (page-1)*this.pagination.perPage;
+            const startIndex = (page - 1) * this.pagination.perPage;
             const endIndex = startIndex + this.pagination.perPage;
+
             return sublist.slice(startIndex, endIndex);
         },
     }    

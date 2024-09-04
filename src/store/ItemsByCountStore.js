@@ -24,7 +24,7 @@ export const useItemsByCountStore = defineStore('itemsByCount', {
     //події використовуються  для зміни стану 
     actions: {
         //зокрема для  виконання асинхронних запитів:  отримання даних  з стороннього API
-        async  getItems() {
+        async getItems() {
             try {
                 const ApiStore = useApiStore();
                 this.urlApi = ApiStore.urlApiByCount;
@@ -42,8 +42,9 @@ export const useItemsByCountStore = defineStore('itemsByCount', {
         paginatedList(page) {
             this.pagination.page = page;
             const sublist = this.items;
-            const startIndex = (page-1)*this.pagination.perPage;
+            const startIndex = (page - 1) * this.pagination.perPage;
             const endIndex = startIndex + this.pagination.perPage;
+            
             return sublist.slice(startIndex, endIndex);
         },
     }    

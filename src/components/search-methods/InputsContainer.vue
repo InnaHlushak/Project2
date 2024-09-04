@@ -3,9 +3,9 @@
         <h3>You can easily find and view photos or videos</h3>
         <p :hidden="!!selected"> Choose a method of searching:</p>
         <CustomSelect @change-selected="changeSelected" />
-        <InputCountContainer v-if="selected === 'Search in a random way'"/>
-        <InputDateContainer v-else-if="selected === 'Search by date'"/>
-        <InputPeriodContainer v-else-if="selected === 'Search by time period'"/>
+        <InputCountContainer v-if="selected === 'Search in a random way'" />
+        <InputDateContainer v-else-if="selected === 'Search by date'" />
+        <InputPeriodContainer v-else-if="selected === 'Search by time period'" />
     </div>
 </template>
 
@@ -36,4 +36,3 @@
         },
     }
 </script>
-

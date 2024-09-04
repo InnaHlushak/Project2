@@ -8,7 +8,7 @@ export const useItemsByDateStore = defineStore('itemsByDate', {
     //описати стан
     state: () => ({
         urlApi: '',
-        itemsState: [],
+        itemsState: {},
     }),
     //щоб отримувати дані  із стану створити геттери
     getters: {
@@ -16,14 +16,15 @@ export const useItemsByDateStore = defineStore('itemsByDate', {
     },
     //події використовуються  для зміни стану 
     actions: {
-        //зокрема для  виконання асинхронних запитів:  отримання даних  з стороннього API
-        async  getItems() {
+        //зокрема для  виконання асинхронних запитів: отримання даних  з стороннього API
+        async getItems() {
             try {
                 const ApiStore = useApiStore();
                 this.urlApi = ApiStore.urlApiByDate;
                 const response = await axiosInstance.get(this.urlApi);
                 this.itemsState = response.data;
             } catch(error) {
+                this.itemsState = null;
                 alert("Sorry! Error! " + error.message + " Enter another date or try again");
             }
         },

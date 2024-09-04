@@ -7,8 +7,8 @@
                 </v-col>
                 <v-col>
                     <v-tabs
-                    align-tabs="center"
-                    color="indigo"
+                        align-tabs="center"
+                        color="indigo"
                     >
                         <router-link to="/">
                             <v-tab :value="1">Home</v-tab>
@@ -24,16 +24,16 @@
                         </router-link>
                     </v-tabs>
                 </v-col>
-                <v-spacer></v-spacer>
+                <v-spacer />
                 <v-col>
                     <router-link to="/sign-up-user">
                         <v-btn v-if="!isLogged" color="orange" class="navigation-btn">Sign up</v-btn>
                     </router-link>
                     <router-link to="/login-user">
-                        <v-btn  color="orange" class="navigation-btn">{{ textButtonLogin }}</v-btn>
+                        <v-btn color="orange" class="navigation-btn">{{ textButtonLogin }}</v-btn>
                     </router-link>
                     <router-link to="/profile-user">
-                        <v-btn  v-if="isLogged" color="orange" class="navigation-btn">Profile</v-btn>
+                        <v-btn v-if="isLogged" color="orange" class="navigation-btn">Profile</v-btn>
                     </router-link>
                 </v-col>
             </v-row>    
@@ -43,10 +43,7 @@
 </template>
 
 <script>
-//імпортувати компонент
-import NasaApod  from "./components/NasaApod.vue";
-
-//імпортувати сховище IfoUserStore створене у PINIA
+import NasaApod from "./components/NasaApod.vue";
 import { useInfoUserStore } from "./store/InfoUserStore.js";
 
 export default {

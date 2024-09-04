@@ -1,20 +1,16 @@
 <template>
     <div class="custom">
-        <label for="custom">Other: </label>
-        <input type="text" id="custom"  @input="$emit('update:modelValue',$event.target.value)" :value="modelValue"/>
+        <label for="custom">Other:</label>
+        <input type="text" id="custom" @input="$emit('update:modelValue', $event.target.value)" :value="modelValue" />
     </div>
 </template>
 
 <script>
-export default {
-    name: 'CustomInput',
-    props:['modelValue'],
-    emits:['update:modelValue'],
-    data() {
-        return {
-        }
+    export default {
+        name: 'CustomInput',
+        props:['modelValue'],
+        emits:['update:modelValue'],
     }
-}
 </script>
 
 <style scoped>

@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <v-card class="mx-auto border-card" max-width="340" color="black">
-            <v-img :src="itemUrl" height="200px" cover> </v-img>
+            <v-img :src="itemUrl" height="200px" cover /> 
             <v-card-title>{{ item.title }}</v-card-title>
             <div>
                 <v-row>
                     <v-col>
-                        <v-btn  color="indigo" variant="tonal" @click="show =!show"> Details </v-btn>
+                        <v-btn color="indigo" variant="tonal" @click="show =!show">Details</v-btn>
                     </v-col>
                     <v-spacer> </v-spacer>
                     <v-col>
-                        <v-btn  color="orange" variant="tonal"  @click="redirectTo(item)"> More </v-btn>
+                        <v-btn color="orange" variant="tonal" @click="redirectTo(item)">More</v-btn>
                     </v-col>
                 </v-row>
             </div>
@@ -21,7 +21,6 @@
                 <v-card-text> {{ item.explanation }}</v-card-text>
                 </div>
             </v-expand-transition>
-                  
         </v-card> 
     </div>
 </template>
@@ -33,7 +32,7 @@
         name: 'ItemCard',
         props: ['item'],
         data() {
-            return  {
+            return {
                 show: false,            
             }
         },
@@ -43,13 +42,9 @@
                     return this.item.url;
                 } 
 
-                else if (this.item.media_type == "video" &&  this.item.thumbnail_url !== ""){
+                else if (this.item.media_type == "video" &&  this.item.thumbnail_url !== "") {
                     return this.item.thumbnail_url;
                 }
-                 
-                // else {
-                // return this.item.url;
-                // }
             }
         },
         methods: {
@@ -68,10 +63,8 @@
 
 <style scoped>
     .border-card {
-    border: 1px solid #8e8d8d; 
-    padding: 20px;
-    margin: 10px;
+        border: 1px solid #8e8d8d; 
+        padding: 20px;
+        margin: 10px;
     }   
 </style>
-
-

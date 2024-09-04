@@ -1,11 +1,10 @@
-<template >
-    <div class="container">
-        <h5>The following  item was found matching your request:</h5>
+<template>
+    <div v-if="items != null" class="container">
         <div>
-            <v-container >
+            <v-container>
                 <v-row>
                     <v-col>
-                        <ItemCard :item="items"/>
+                        <ItemCard :item="items" />
                     </v-col>
                 </v-row>
             </v-container>
@@ -25,13 +24,12 @@
         props: ['userDate'],
         computed: {
             //зробити доступними у компоненті змінні із відповідного сховища
-            ...mapState(useApiStore, ['urlApiByDate']),
             ...mapState(useItemsByDateStore, ['items']),
         },
         //щоб  запит до АРІ спрацював коли компонент буде монтуватися треба звернутися до хукі життєвого циклу
-        mounted() {
+        async mounted() {
             this.setDate();
-            this.getItems();
+            await this.getItems();
         },
         methods: {
             //зробити доспупними у компоненті функції(дії) із відповідного сховища 

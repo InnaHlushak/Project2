@@ -4,13 +4,11 @@
             <h1>Discover the cosmos!</h1>
             <h4>{{ message }}</h4>
         </div>
-        <!--Дочірній InputsContainer будe рендеретись у вкладений router-view-->
         <router-view />
     </div>
 </template>
 
 <script>
-
 export default {
     name: 'Hello',
     data() {

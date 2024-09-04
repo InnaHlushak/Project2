@@ -6,20 +6,21 @@
         <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank" class="nasa-link">APOD</a> 
     </div>
 </template>
-<script>
 
+<script>
 export default {
     name: 'NasaApod',
 }
 </script>
 
 <style scoped>
-.nasa-link {
-    color: white;
-    font-size: 16px;
-}
-.nasa-link:hover {
-    color: rgb(15, 191, 239); 
-    cursor:pointer;
-}
+    .nasa-link {
+        color: white;
+        font-size: 16px;
+    }
+    
+    .nasa-link:hover {
+        color: rgb(15, 191, 239); 
+        cursor:pointer;
+    }
 </style>

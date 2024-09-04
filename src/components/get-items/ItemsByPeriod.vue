@@ -1,12 +1,9 @@
-<template v-if="itemsByPeriod.length">
-    <div class="container">
-        <h5>The following  items were found matching your request:</h5>
+<template>
+    <div v-if="items.length" class="container">
         <div>
-            <v-container >
+            <v-container>
                 <v-row>
-                    <v-col 
-                        v-for="(item, date) in paginationListItems" :key="item.date"
-                    >
+                    <v-col v-for="item in list" :key="item.date">
                         <ItemCard :item="item" />
                     </v-col>
                 </v-row>
@@ -33,25 +30,19 @@
         data() {
             return  {
                 page: 1, //pagination page
+                list: [],
             }
         },
         computed: {
             //зробити доступними у компоненті змінні із відповідного сховища
-            ...mapState(useApiStore, ['urlApiByPeriod']),
             ...mapState(useItemsByPeriodStore, ['items','paramsPagination']),
-            
-            //зробити пагінацію списку отриманих елементів
-            paginationListItems() {
-                let list = [];   
-                this.setParamsPagination();
-                list =  this.paginatedList(this.page);
-                return list;
-           }
         },
         //щоб  запит до АРІ спрацював коли компонент буде монтуватися треба звернутися до хукі життєвого циклу
-        mounted() {
+        async mounted() {
             this.setPeriod();
-            this.getItems();
+            await this.getItems();
+            this.setParamsPagination();
+            this.list = this.paginatedList(this.page);
         },
         methods: {
            //зробити доспупними у компоненті функції(дії) із відповідного сховища 
@@ -60,8 +51,13 @@
 
            //оновити стан сховища, врахувавши параметри задані користувачем
            setPeriod() {
-            this.updatePeriod(this.userPeriod);
+               this.updatePeriod(this.userPeriod);
            },
+        },
+        watch: {
+            page(value) {
+                this.list = this.paginatedList(value);
+            },
         },
     }
 </script>

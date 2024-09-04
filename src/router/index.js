@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Hello from "@/components/Hello.vue";
-import InputsContainer from "@/components/searchmethods/InputsContainer.vue";
-import InputCountContainer from "@/components/searchmethods/InputCountContainer.vue";
-import InputDateContainer from "@/components/searchmethods/InputDateContainer.vue";
-import InputPeriodContainer from "@/components/searchmethods/InputPeriodContainer.vue";
-import ItemsByCount from "@/components/getitems/ItemsByCount.vue";
+import InputsContainer from "@/components/search-methods/InputsContainer.vue";
+import InputCountContainer from "@/components/search-methods/InputCountContainer.vue";
+import InputDateContainer from "@/components/search-methods/InputDateContainer.vue";
+import InputPeriodContainer from "@/components/search-methods/InputPeriodContainer.vue";
 import ItemDescription from "@/components/ItemDescription.vue";
 import SignUpUser from "@/components/forms/SignUpUser.vue";
 import LoginUser from "@/components/forms/LoginUser.vue";
@@ -40,15 +39,10 @@ const routes = [
         component: InputPeriodContainer, 
     },
     {
-        path: '/items-by-count', 
-        name: 'items-by-count',
-        component: ItemsByCount, 
-    },
-    {
         path: '/item-description/:date', 
         name: 'item-description',
         component: ItemDescription, 
-        //щоб параметр шляху title передавався як props до компонента
+        //щоб параметр шляху передавався як props до компонента
         props: true,
     },
     {
@@ -84,7 +78,7 @@ const router = createRouter({
     // 4. Реалізація історії для подальшого використання. 
     history: createWebHistory(),
     routes, // скорочено від `routes: routes`
-  });
+});
 
 //5. Додавання глобального Navigation Guard
 //для захисту маршрутів від  неавторизованих користувачів 
@@ -94,7 +88,7 @@ router.beforeEach((to, from, next) => {
     //Якщо маршрут вимагає авторизації
     if (to.meta.requiresAuth) {
         //Перевірити чи користувач пройшов авторизацію
-        if(!isAuthenticated) {
+        if (!isAuthenticated) {
             next('/login-user'); //Перенаправити  на сторінку Login
         } else  {
             next(); //Допустити до маршруту (бо користувач авторизований)
@@ -102,7 +96,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next(); //Допустити до маршруту (бо він не вимагає авторизації)
     } 
-  });
+});
 
 //хук виконує додаткову дію після переходу
 //а саме, логування інформації про навігацію
@@ -110,5 +104,4 @@ router.afterEach((to,from) => {
     console.log(`Navigation to ${to.fullPath} from ${from.fullPath}`);
 });
 
-  export default router;
-
+export default router;
