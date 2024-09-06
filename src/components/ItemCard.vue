@@ -26,7 +26,8 @@
 </template>
 
 <script>
-    import axiosInstance from "../../services/axios";
+    // import axiosInstance from "../../services/axios";
+    import {useSingleItemStore} from "../store/SingleItemStore.js";
 
     export default {
         name: 'ItemCard',
@@ -49,14 +50,15 @@
         },
         methods: {
             redirectTo(item) {
-                //this.$router.push('/item-description')
                 this.$router.push({
                     name: 'item-description',
                     params: {
-                        date: item.date
-                    }
+                        title: item.title,
+                    },
                 });
-            }
+
+                useSingleItemStore().itemState = item;
+            },
         }
     }
 </script>

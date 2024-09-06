@@ -17,7 +17,7 @@
                         v-show="verifyCount"
                         color="indigo" 
                         variant="tonal"  
-                        @click="showItemsByCount()"
+                        @click="showItems()"
                     > 
                         Show {{ count }} items 
                     </v-btn>
@@ -30,9 +30,11 @@
 
 <script>
     import ItemsByCount from '@/components/get-items/ItemsByCount.vue';
+    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
 
     export default {
         name: 'InputCountContainer',
+        mixins: [mixinShowItems],
         components: {
             ItemsByCount,
         },
@@ -40,7 +42,8 @@
             return {
                 count: 1,
                 error: 'Value must be positive integer, no greater than 100',
-                show: false,
+                //винесено у mixin 
+                // show: false,
             }
         },
         computed: {
@@ -51,12 +54,13 @@
 
                 return true;
             },
-        },    
-        methods: {
-            showItemsByCount() {
-                this.show = true;
-            },
-        },
+        },  
+        //винесено у mixin   
+        //methods: {
+            // showItems() {
+            //     this.show = true;
+            // },
+        //},
         watch: {
             count(value) {
                 this.show = false;

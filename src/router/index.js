@@ -39,7 +39,7 @@ const routes = [
         component: InputPeriodContainer, 
     },
     {
-        path: '/item-description/:date', 
+        path: '/item-description/:title', 
         name: 'item-description',
         component: ItemDescription, 
         //щоб параметр шляху передавався як props до компонента

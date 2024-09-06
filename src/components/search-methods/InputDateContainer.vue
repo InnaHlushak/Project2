@@ -4,7 +4,8 @@
         <v-container max-width="50vw"  class="text-center"> 
             <v-row>
                 <v-col>
-                    <v-sheet color="grey-darken-4">
+                    <!-- тут застосовано користувальницьку директиву v-highlight -->
+                    <v-sheet v-highlight>
                         <label for="inputDate">Date:</label>
                         <input 
                             v-model="date"
@@ -15,6 +16,7 @@
                             max="2024-12-31" 
                         />
                     </v-sheet>
+                    <!-- </v-sheet> -->
                     <v-sheet v-if="!verifyDate" class="error"> 
                         {{ error }}
                     </v-sheet>
@@ -22,7 +24,7 @@
                         v-show="verifyDate"
                         color="indigo" 
                         variant="tonal" 
-                        @click="showItemsByDate()"
+                        @click="showItems()"
                     > 
                         Show item
                     </v-btn>
@@ -35,9 +37,11 @@
 
 <script>
     import ItemsByDate from '@/components/get-items/ItemsByDate.vue';
+    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
 
     export default {
         name: 'InputDateContainer',
+        mixins: [mixinShowItems],
         components: {
             ItemsByDate,
         },
@@ -45,7 +49,8 @@
             return  {
                 date: null,
                 error: 'Enter the date!',
-                show: false,
+                //винесено у mixin 
+                //show: false, 
             }
         },
         computed: {
@@ -53,11 +58,12 @@
                 return this.date;
             },
         },
-        methods: {
-            showItemsByDate() {
-                this.show = true;
-            },
-        },
+        //винесено у mixin 
+        // methods: {
+        //     showItems() {
+        //         this.show = true;
+        //     },
+        // },
         watch: {
             date(value) {
                 this.show = false;

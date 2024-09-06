@@ -4,7 +4,8 @@
         <v-container max-width="50vw" class="text-center">
             <v-row>
                 <v-col>
-                    <v-sheet color="grey-darken-4">
+                    <!-- тут застосовано користувальницьку директиву v-highlight -->
+                    <v-sheet v-highlight>
                         <label for="inputStartDate">Start date:</label>
                         <input
                             v-model="period.startDate"
@@ -31,7 +32,7 @@
                         v-show="verifyPeriod"
                         color="indigo"
                         variant="tonal"
-                        @click="showItemsByPeriod()"
+                        @click="showItems()"
                     >
                         Show items 
                     </v-btn>
@@ -44,9 +45,11 @@
 
 <script>
     import ItemsByPeriod from '@/components/get-items/ItemsByPeriod.vue';
+    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
 
     export default {
         name: 'InputPeriodContainer',
+        mixins: [mixinShowItems],
         components: {
             ItemsByPeriod,
         },
@@ -57,7 +60,8 @@
                     endDate: null,
                 },                
                 error: 'Enter the date!',
-                show: false,
+                //винесено у mixin
+                //show: false,
             }
         },
         computed: {
@@ -65,11 +69,12 @@
                 return this.period.startDate && this.period.endDate;
             }
         },
-        methods: {
-            showItemsByPeriod() {
-                    this.show = true;
-            },
-        },
+        //винесено у mixin   
+        //methods: {
+            // showItems() {
+            //     this.show = true;
+            // },
+        //},
         watch: {
             period: {
                 handler(value) {
