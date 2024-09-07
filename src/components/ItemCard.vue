@@ -26,7 +26,6 @@
 </template>
 
 <script>
-    // import axiosInstance from "../../services/axios";
     import {useSingleItemStore} from "../store/SingleItemStore.js";
 
     export default {

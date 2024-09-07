@@ -22,6 +22,9 @@
                         <router-link :to="{name: 'by-time-period'}">
                             <v-tab :value="4">By Time period</v-tab>
                         </router-link>
+                        <router-link :to="{name: 'videos'}">
+                            <v-tab :value="5">Videos</v-tab>
+                        </router-link>
                     </v-tabs>
                 </v-col>
                 <v-spacer />

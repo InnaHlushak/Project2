@@ -4,6 +4,7 @@ import InputsContainer from "@/components/search-methods/InputsContainer.vue";
 import InputCountContainer from "@/components/search-methods/InputCountContainer.vue";
 import InputDateContainer from "@/components/search-methods/InputDateContainer.vue";
 import InputPeriodContainer from "@/components/search-methods/InputPeriodContainer.vue";
+import InputVideoContainer from "@/components/search-methods/InputVideoContainer.vue";
 import ItemDescription from "@/components/ItemDescription.vue";
 import SignUpUser from "@/components/forms/SignUpUser.vue";
 import LoginUser from "@/components/forms/LoginUser.vue";
@@ -37,6 +38,11 @@ const routes = [
         path: '/by-time-period', 
         name: 'by-time-period',
         component: InputPeriodContainer, 
+    },
+    {
+        path: '/videos', 
+        name: 'videos',
+        component: InputVideoContainer, 
     },
     {
         path: '/item-description/:title', 

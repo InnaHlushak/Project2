@@ -6,6 +6,7 @@
         <InputCountContainer v-if="selected === 'Search in a random way'" />
         <InputDateContainer v-else-if="selected === 'Search by date'" />
         <InputPeriodContainer v-else-if="selected === 'Search by time period'" />
+        <InputVideoContainer v-else-if="selected === 'Search videos'" />
     </div>
 </template>
 
@@ -14,6 +15,7 @@
     import InputCountContainer from './InputCountContainer.vue';
     import InputDateContainer from './InputDateContainer.vue';
     import InputPeriodContainer from './InputPeriodContainer.vue';
+    import InputVideoContainer from './InputVideoContainer.vue';
 
     export default {
         name: 'InputsContainer',
@@ -22,6 +24,7 @@
             InputCountContainer,
             InputDateContainer,
             InputPeriodContainer,
+            InputVideoContainer,
         },
         data() {
             return  {

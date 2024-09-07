@@ -7,6 +7,7 @@
                 'Search in a random way', 
                 'Search by date', 
                 'Search by time period',
+                'Search videos',
             ]"
             variant="outlined"
         ></v-select>
