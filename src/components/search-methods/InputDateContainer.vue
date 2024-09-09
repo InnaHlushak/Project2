@@ -5,7 +5,7 @@
             <v-row>
                 <v-col>
                     <!-- тут застосовано користувальницьку директиву v-highlight -->
-                    <v-sheet v-highlight>
+                    <v-sheet v-highlight class="cursor-pointer">
                         <label for="inputDate">Date:</label>
                         <input 
                             v-model="date"
@@ -37,7 +37,7 @@
 
 <script>
     import ItemsByDate from '@/components/get-items/ItemsByDate.vue';
-    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
+    import mixinShowItems from '@/mixins/mixinShowItems';
 
     export default {
         name: 'InputDateContainer',

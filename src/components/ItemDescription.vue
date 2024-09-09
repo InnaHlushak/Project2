@@ -59,10 +59,10 @@ export default {
             return this.item.url;
         },
         isImage() {
-            return (this.item.media_type === "image");
+            return this.item.media_type === "image";
         },
         isVideo() {
-            return (this.item.media_type == "video" &&  this.item.thumbnail_url !== "");
+            return this.item.media_type === "video" &&  this.item.thumbnail_url !== "";
         },
     },
     mounted() {

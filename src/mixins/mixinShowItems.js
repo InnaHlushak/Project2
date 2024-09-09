@@ -1,4 +1,4 @@
-export const mixinShowItems = {
+export default {
     data() {
         return {
             error: 'Error',

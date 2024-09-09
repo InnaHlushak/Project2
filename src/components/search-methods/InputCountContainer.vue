@@ -8,7 +8,8 @@
                         v-model="count"
                         label="Quantity for random selection:" 
                         placeholder="1"  
-                        type="number" min="1" max="100" 
+                        type="number" min="1" max="100"
+                        class="cursor-pointer"                        
                     />
                     <v-sheet v-if="!verifyCount" class="error"> 
                         {{ error }}
@@ -30,7 +31,7 @@
 
 <script>
     import ItemsByCount from '@/components/get-items/ItemsByCount.vue';
-    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
+    import mixinShowItems from '@/mixins/mixinShowItems';
 
     export default {
         name: 'InputCountContainer',

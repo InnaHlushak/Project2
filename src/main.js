@@ -66,24 +66,10 @@ const app = createApp(App);
 app.component('ItemCard', ItemCard);
 app.component('ItemDescription', ItemDescription);
 
-//Власні(користувальницькі) директиви
-app.directive('highlight', {
-    mounted(el) { 
-        el.style.color = "white"      
-        el.style.backgroundColor = "rgba(42, 41, 41, 0.2)";
-        el.style.borderBottom = "0.5px solid white";
-
-        el.addEventListener("mouseover", function (event) {
-            el.style.backgroundColor = "rgba(42, 41, 41, 0.5)";
-            el.style.borderBottom = "2px solid white";
-        });
-
-        el.addEventListener("mouseout", function (event) { 
-            el.style.backgroundColor="rgba(42, 41, 41, 0.3)";
-            el.style.borderBottom ="0.5px solid white";          
-        });
-    }
-});
+//Імпорт власної(користувальницької) директиви 
+import highlightDirective from '@/directives/highlight';
+//Реєстрація директиви
+app.directive('highlight', highlightDirective);
 
 app.use(vuetify).use(router).use(pinia);
 

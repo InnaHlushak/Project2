@@ -19,7 +19,7 @@
 
 <script>
 // У стилі CompositionAPI
-import { ref, toRefs, onMounted, watch} from 'vue'
+import { ref, toRefs, reactive, onMounted, watch} from 'vue'
 
 //імпортувати store що створили у PINIA
 import {useItemsVideoStore} from "../../store/ItemsVideoStore.js";
@@ -47,7 +47,8 @@ export default {
         const items = ref([]);
         const page = ref(1); //pagination page
         const list = ref([]); 
-        const paramsPagination = ref(itemsVideoStore.paramsPagination);
+        //створити реактивний об'єкт (значення якого буде глибоко ректривним)
+        const paramsPagination = reactive(itemsVideoStore.paramsPagination);
 
         //щоб  запит до АРІ спрацював коли компонент буде монтуватися треба звернутися до хукі життєвого циклу mounted
         onMounted( async() => {

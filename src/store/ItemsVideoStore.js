@@ -1,5 +1,5 @@
 //Store у стилі CompositionAPI
-import {ref, computed} from 'vue';
+import {ref, reactive, computed} from 'vue';
 
 import {defineStore} from 'pinia';
 import axiosInstance from '../../services/axios.js';
@@ -11,7 +11,7 @@ export const useItemsVideoStore = defineStore('itemsVideo', () => {
     //стан
     const urlApi = ref('');
     const itemsState = ref([]);
-    const pagination = ref({
+    const pagination = reactive({
         page: 1,
         total: '',
         perPage: 3,
@@ -28,7 +28,7 @@ export const useItemsVideoStore = defineStore('itemsVideo', () => {
         return itemsVideo;
     });
 
-    const paramsPagination = computed(()  => {return pagination.value});
+    const paramsPagination = computed(() => {return pagination});
 
     //дії (функції)
     //зокрема для  виконання асинхронних запитів:  отримання даних  з стороннього API
@@ -46,15 +46,15 @@ export const useItemsVideoStore = defineStore('itemsVideo', () => {
 
     //зокрема для  пагінації списку  отримання даних  
     const setParamsPagination = () => {
-        pagination.value.total = items.value.length;
-        pagination.value.pages = Math.ceil(items.value.length / pagination.value.perPage);            
+        pagination.total = items.value.length;
+        pagination.pages = Math.ceil(items.value.length / pagination.perPage);            
     };
 
     const paginatedList = (page) => {
-        pagination.value.page = page;
+        pagination.page = page;
         const sublist = items.value;
-        const startIndex = (page - 1) * pagination.value.perPage;
-        const endIndex = startIndex + pagination.value.perPage;
+        const startIndex = (page - 1) * pagination.perPage;
+        const endIndex = startIndex + pagination.perPage;
 
         return sublist.slice(startIndex, endIndex);
     };

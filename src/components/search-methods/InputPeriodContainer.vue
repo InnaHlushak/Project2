@@ -5,7 +5,7 @@
             <v-row>
                 <v-col>
                     <!-- тут застосовано користувальницьку директиву v-highlight -->
-                    <v-sheet v-highlight>
+                    <v-sheet v-highlight class="cursor-pointer">
                         <label for="inputStartDate">Start date:</label>
                         <input
                             v-model="period.startDate"
@@ -45,7 +45,7 @@
 
 <script>
     import ItemsByPeriod from '@/components/get-items/ItemsByPeriod.vue';
-    import {mixinShowItems} from '@/mixins/mixinShowItems.js';
+    import mixinShowItems from '@/mixins/mixinShowItems';
 
     export default {
         name: 'InputPeriodContainer',
