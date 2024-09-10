@@ -4,7 +4,7 @@ import InputsContainer from "@/components/search-methods/InputsContainer.vue";
 import InputCountContainer from "@/components/search-methods/InputCountContainer.vue";
 import InputDateContainer from "@/components/search-methods/InputDateContainer.vue";
 import InputPeriodContainer from "@/components/search-methods/InputPeriodContainer.vue";
-import InputVideoContainer from "@/components/search-methods/InputVideoContainer.vue";
+const InputVideoContainer = () => import ("@/components/search-methods/InputVideoContainer.vue");  //lazy loading
 import ItemDescription from "@/components/ItemDescription.vue";
 import SignUpUser from "@/components/forms/SignUpUser.vue";
 import LoginUser from "@/components/forms/LoginUser.vue";
